@@ -34,7 +34,7 @@ export class ChatbotPage implements OnInit {
   chat: Chat[] = [{
     image: "assets/Logo.png",
     tipo: 1,
-    mensagem: "Olá, usuário! \nMeu nome é <nome> ",
+    mensagem: "",
     time: this.tempo,
   }]
 
