@@ -1,5 +1,5 @@
 <ion-header color="primary" class="header">
-  <ion-toolbar color="primary" class="tbheader">
+  <ion-toolbar color="primary" class="tbheader" style="--box-shadow:0">
     <ion-button style="--box-shadow:0" size="large" slot="start" (click)="back()">
       <ion-icon name="arrow-back">
       </ion-icon>
@@ -12,10 +12,7 @@
   </ion-toolbar>
   <div class="dheader">&nbsp;</div>
 
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </ion-header>
 
 <ion-content class="content" [scrollEvents]="true">
@@ -39,10 +36,11 @@
 
 
     <div *ngFor="let coisa of chat2">
-      
+
       <div *ngIf="typing" class="chat_3">
         <img src="{{coisa.image}}" alt="Logo" class="logo">
-        <img src="{{coisa.image_2}}" class="points animate__animated animate__headShake animate__infinite	infinite" alt="pontos" >
+        <img src="{{coisa.image_2}}" class="points animate__animated animate__headShake animate__infinite	infinite"
+          alt="pontos">
       </div>
     </div>
   </div>
@@ -58,19 +56,22 @@
 
   <div class="btmsg">
     <div class="buttons_2">
-      <div class="buttons" *ngFor="let btn of botoes">
-        <ion-button color="warning" class="btn" (click)="resposta(btn.texto)">{{btn.texto}}</ion-button>
+
+      <div class="buttons" *ngFor="let btn of botoes; let i = index">
+        <ion-button color="warning" class="btn" [ngClass]="{'last':(i+1)==botoes.length}"
+          (click)="resposta(btn.text, btn.next_intent)">{{btn.text}}</ion-button>
       </div>
     </div>
   </div>
 
   <!-- <div class="msg"> -->
 
-
-  <ion-input class="input" placeholder="Digite uma mensagem..." name="mensage" [(ngModel)]="mensage">
-  </ion-input>
-  <ion-button class="btnsend" (click)="send()">
-    <ion-icon name="arrow-forward"></ion-icon>
-  </ion-button>
+  <div class="inputbutton">
+    <ion-input class="input" placeholder="Digite uma mensagem..." name="mensage" [(ngModel)]="mensage">
+    </ion-input>
+    <button class="btnsend" (click)="send()">
+      <ion-icon name="arrow-forward"></ion-icon>
+    </button>
+  </div>
   <!-- </div> -->
 </ion-footer>
