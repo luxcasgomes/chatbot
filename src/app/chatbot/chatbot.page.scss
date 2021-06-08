@@ -30,15 +30,21 @@ ion-title{
 //     padding: 16px 12px 0;
 //     height: 100%;
 // }
-
+.content::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}
 .content{
     --background: white;
     --padding-top:12px;
     // min-width: 100vw;
 }
+// .inner-scroll scroll-y{
 
+// }
 
 .space{
+    padding-top: 2px;
     padding-bottom:132px;
     // border:none;
 }
@@ -49,7 +55,9 @@ ion-title{
     // padding-left: 20px;
     // margin: 8px 0px 20px 5vw;
     margin: 8px 30px 20px 5vw;
-    width: 85vw;
+    // width: 85vw;
+    width: fit-content;
+    max-width: 85vw;
     border: 1px solid #CBDFF0;
     border-radius: 12px 12px 12px 0;
     color: #003771;
@@ -70,9 +78,10 @@ ion-title{
 
 .chat_2{
     background: #006FCF;
-    padding:20px 20px 5px 20px;
+    padding:16px 20px 5px 20px;
     margin: 0 5vw 20px auto;
-    width: 85vw;
+    width: fit-content;
+    max-width: 85vw;
     box-sizing: border-box;
     // box-shadow: 5px 2.5px 2.5px rgba(5, 100, 100, 0.2);
     border: 1px solid #0066c0;
@@ -80,6 +89,7 @@ ion-title{
     color: whitesmoke;
     font-size: 12pt;
     line-height: 3vh;
+    text-align: end;
     img{
         display: none;
     }
@@ -159,10 +169,10 @@ p{
         padding: 12px 0;
 }
 
-.btmsg{
-    margin: 0 auto;
-    bottom: 0;
-}
+// .btmsg{
+//     margin: 0 auto;
+//     bottom: 0;
+// }
 
 .inputbutton{
     display: flex;
@@ -267,7 +277,60 @@ p{
     .chat_3{
         justify-content: space-between;
         width: 20vw;
+        .logo {
+            height: 5vh;
+            width: 7vh;
+            margin-right: 15px;
+            margin-bottom: 12px;
+            max-width: 60px;
+            max-height: 24px;
+        }
+        .points {
+            margin: auto;
+            margin-left: 1vw;
+            width: 10vw;
+            height: 10vw;
+            max-width: 50px;
+            max-height: 50px;
+        }
     }
+    
+    .input{
+        height: 7vh;
+    }
+
+    .btnsend{
+        height: 7vh;
+        width: 7vh;
+    }
+}
+
+@media screen and (max-height: 1024px){
+    .buttons_2{
+        margin-bottom: -8vh;
+        // overflow-x: none;
+    }
+    .chat_3{
+        justify-content: space-between;
+        width: 20vw;
+        .logo {
+            height: 5vh;
+            width: 7vh;
+            margin-right: 15px;
+            margin-bottom: 12px;
+            max-width: 60px;
+            max-height: 24px;
+        }
+        .points {
+            margin: auto;
+            margin-left: 1vw;
+            width: 10vw;
+            height: 10vw;
+            max-width: 50px;
+            max-height: 50px;
+        }
+    }
+    
     .input{
         height: 7vh;
     }
@@ -282,12 +345,53 @@ p{
         margin-bottom: -5.5vh;
         // overflow-x: none;
     }
+    #logo{
+        height: 2.75vh;
+        width: 7vh;
+    }
+    .chat{
+        font-size: 18pt;
+    }
+    .time{
+        padding-bottom: 1vh;
+        font-size: 13pt;
+    }
+    .chat_2{
+        font-size: 18pt;
+    }
+    .time_2{
+        padding-bottom: 1vh;
+        font-size: 13pt;
+    }
     .chat_3{
         justify-content: space-between;
         width: 20vw;
+        font-size: 20pt;
+        .logo{
+            height: 2.75vh;
+            width: 7vh;
+            margin-bottom: 2vh;
+            max-width: 96px;
+            max-height: 38px;
+        }
     }
+    .buttons{
+        .btn{
+            font-size: 18pt;
+        }
+    }
+    
     .input{
         height: 5vh;
+        
+        font-size: 18pt;
+    }
+    .btnsend{
+        height: 5vh;
+        width: 5vh;
+        ion-icon{
+            font-size: 38pt;
+        }
     }
 }
 @media screen and (min-height: 768px)and (max-height: 768px){
@@ -361,10 +465,10 @@ p{
     }
 
     .btnsend{
-        height: 6vh !important;
-        width: 6vh !important;
+        height: 6vh;
+        width: 6vh ;
         ion-icon {
-            font-size: 2em;
+            font-size: 1.7em;
         }
     }
 }
@@ -374,15 +478,52 @@ p{
         margin-bottom: -9vh;
         // overflow-x: none;
     }
+    #logo{
+        height: 2.75vh;
+        width: 7vh;
+    }
+    .chat{
+        font-size: 11pt;
+    }
+    .time{
+        padding-bottom: 0.5vh;
+        font-size: 8pt;
+    }
+    .chat_2{
+        font-size: 11pt;
+    }
+    .time_2{
+        padding-bottom: 0.5vh;
+        font-size: 8pt;
+    }
     .chat_3{
         justify-content: space-between;
         width: 50vw;
+        font-size: 20pt;
+        .logo{
+            height: 2.75vh;
+            width: 7vh;
+            margin-bottom: 2vh;
+            max-width: 96px;
+            max-height: 38px;
+        }
     }
+    .buttons{
+        .btn{
+            font-size: 10pt;
+        }
+    }
+    
     .input{
-        height: 12vw;
+        height: 5vh;
+        
+        font-size: 10pt;
     }
     .btnsend{
-        height: 12vw !important;
-        width: 12vw !important;
+        height: 5vh;
+        width: 5vh;
+        ion-icon{
+            font-size: 20pt;
+        }
     }
 }

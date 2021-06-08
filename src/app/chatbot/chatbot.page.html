@@ -46,13 +46,8 @@
   </div>
 
 
-
-
-
-
-
 </ion-content>
-<ion-footer class="footer ion-no-border">
+<ion-footer class="footer ">
 
   <div class="btmsg">
     <div class="buttons_2">
@@ -66,12 +61,12 @@
 
   <!-- <div class="msg"> -->
 
-  <div class="inputbutton">
-    <ion-input class="input" placeholder="Digite uma mensagem..." name="mensage" [(ngModel)]="mensage">
+  <form  class="inputbutton">
+    <ion-input ng-keypress="$event.keyCode == 13 && send()" ng-submit="send()" autofocus ng-enter="send()" maxlength="200" class="input" placeholder="Digite uma mensagem..." name="mensage" [(ngModel)]="mensage">
     </ion-input>
     <button class="btnsend" (click)="send()">
       <ion-icon name="arrow-forward"></ion-icon>
     </button>
-  </div>
+  </form>
   <!-- </div> -->
 </ion-footer>

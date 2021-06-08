@@ -46,6 +46,7 @@ export class ChatbotPage implements OnInit {
   user_ref: string = "123"
   next_intent: string
 
+
   botoes = []
   constructor(private router: Router, private alertCtrl: AlertController, private chatService: ChatService) { }
 
@@ -59,15 +60,45 @@ export class ChatbotPage implements OnInit {
 
   async logar() {
     let log: any = await this.chatService.autenticate()
-    console.log(log.token)
+    // console.log(log.token)
 
     this.token = log.token
     this.welcome()
+    this.ScrollToBottom()
   }
 
   async welcome() {
+    let his: any = await this.chatService.history(this.token, this.user_ref)
+
     let conv: any = await this.chatService.conversa(null, "WELCOME", this.user_ref, this.token)
 
+
+    his.docs.reverse()
+    his.docs.forEach(element => {
+
+      if (element.type_input == "recived") {
+        element.conversation.messenger.forEach((message: string) => {
+          this.chat.push({
+            image: "assets/Logo.png",
+            tipo: 1,
+            mensagem: message,
+            time: this.tempo,
+          })
+          this.botoes = conv.quick_replies
+        });
+      } else if (element.type_input == "sending") {
+        if (element.input) {
+          this.chat.push({
+            tipo: 2,
+            mensagem: element.input,
+            time: this.tempo,
+          })
+          // this.botoes = conv.quick_replies
+        }
+      }
+    });
+
+    // if(his.docs[0].conversation.menssenger.length){
     conv.messenger.forEach(element => {
       this.chat.push({
         image: "assets/Logo.png",
@@ -77,6 +108,8 @@ export class ChatbotPage implements OnInit {
       })
       this.botoes = conv.quick_replies
     });
+    // }
+
     this.ScrollToBottom()
   }
   async presentAlert() {
@@ -104,6 +137,7 @@ export class ChatbotPage implements OnInit {
         mensagem: this.mensage,
         time: this.tempo,
       })
+      // console.log(this.mensage)
       this.botoes = null
       this.typing = true;
       this.trans = this.mensage
@@ -135,19 +169,23 @@ export class ChatbotPage implements OnInit {
   }
 
   async resposta(btn, next_intent) {
+    let his: any = await this.chatService.history(this.token, this.user_ref)
+    his.docs.input = btn;
     this.chat.push({
       image: "assets/Logo.png",
       tipo: 2,
-      mensagem: btn,
+      mensagem: his.docs.input,
       time: this.tempo
     })
+    console.log(btn)
+
     this.botoes = []
-    this.mensage = null
+    this.mensage = null;
 
     this.typing = true;
     this.ScrollToBottom();
     setTimeout(() => {
-      this.recive(null, next_intent)
+      this.recive(his.docs.input, next_intent)
       this.typing = false;
       this.ScrollToBottom();
     }, 2500)

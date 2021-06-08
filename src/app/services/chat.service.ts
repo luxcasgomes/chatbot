@@ -32,4 +32,14 @@ export class ChatService {
     }).toPromise()
   }
   
+  async history(token, user_ref){
+      return await this.httpClient.get('http://ec2-3-16-43-85.us-east-2.compute.amazonaws.com:8000/api/history',{
+      params:{
+        user_ref: user_ref,
+        page:"1",
+        limit:"40"
+      },
+      headers:{"x-access-token":token}
+    }).toPromise()
+  }
 }
